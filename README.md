@@ -13,7 +13,8 @@ This project is a Python application that displays live internet upload and down
 ---
 
 ### Snapshot
-![image](https://github.com/user-attachments/assets/4e3d3a6d-d282-4aa8-8929-2a902ce729bc)
+![Screenshot 2025-01-22 122143](https://github.com/user-attachments/assets/b6b939bf-e02b-4ce0-8460-be6107e37712)
+
 
 
 ## Requirements
