@@ -16,6 +16,11 @@ This project is a Python application that displays live internet upload and down
 ![Screenshot 2025-01-22 122143](https://github.com/user-attachments/assets/b6b939bf-e02b-4ce0-8460-be6107e37712)
 
 
+### Download
+
+Click the link below to get the latest version of the Network Overlay executable:
+
+[Download Network Overlay (.exe)](https://github.com/kndnsow/internet-speed-meter/tree/main/dist)
 
 ## Requirements
 
