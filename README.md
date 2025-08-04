@@ -1,122 +1,102 @@
-# Network Overlay for Taskbar
 
-This project is a Python application that displays live internet upload and download speeds as an overlay on the taskbar. The overlay remains fixed at the bottom-left corner of the screen and stays visible above all other windows, including the taskbar.
+# Customizable Network Speed Overlay
+
+A lightweight, powerful, and highly customizable desktop widget that displays your real-time network upload and download speeds. It uses a clean, modern interface and a simple right-click context menu for all configuration.
+
+![Screenshot](https://github.com/kndnsow/internet-speed-meter/raw/main/Screenshots/Screenshot_0.png)
+
+*The default "Modern" theme. Appearance is fully customizable.*
 
 ## Features
 
-- **Live Network Monitoring**: Displays upload (Up) and download (Dn) speeds in real-time.
-- **Taskbar Integration**: The overlay sticks to the bottom-left corner of the screen.
-- **Always on Top**: Ensures the overlay is always visible and does not disappear behind other windows or the taskbar.
-- **Transparent Background**: Uses a black transparent background for a seamless overlay experience.
-- **Lightweight**: Minimal resource usage for continuous monitoring.
+- **Live Network Monitoring**: Displays real-time upload and download speeds, intelligently formatted from B/s to GB/s.
+- **Extensive Customization**: A dedicated "Customizable" theme allows you to change:
+    - **Colors**: Pick any background and text color.
+    - **Fonts**: Choose from any font family, size, and style (bold, italic) installed on your system.
+    - **Icons**: Replace the default "Up/Down" text or arrows with your favorite emojis or symbols.
+    - **Opacity**: Adjust the transparency of the widget from fully opaque to nearly invisible.
+    - **Borders**: Set border width and style (e.g., solid, raised, sunken).
+- **Multiple Themes**: Comes with several built-in themes like Modern, Glass, Neon, Classic, and a high-contrast Dark Pro.
+- **Flexible Positioning**:
+    - **Drag & Drop**: Freely move the overlay anywhere on your screen.
+    - **Snap Positions**: Instantly snap the widget to corners or center-screen positions.
+- **User-Friendly Interface**: All settings are accessed through a clean right-click context menu. No need to edit files for configuration.
+- **System Integration**:
+    - **Persistent Settings**: Your position, theme, and custom settings are automatically saved and reloaded on startup.
+    - **Windows Auto-Start**: An option to automatically launch the application when you log in to Windows.
+    - **Always on Top (Toggleable)**: Keep the overlay visible, or turn it off if you prefer.
+    - **Single Instance Lock**: Prevents accidentally opening multiple copies of the application.
 
 ---
-
-### Snapshot
-![Screenshot 2025-01-22 122143](https://github.com/user-attachments/assets/b6b939bf-e02b-4ce0-8460-be6107e37712)
-
 
 ### Download
 
-Click the link below to get the latest version of the Network Overlay executable:
+You can download the latest pre-built version for Windows. No installation is required.
 
 [Download Network Overlay (.exe)](https://github.com/kndnsow/internet-speed-meter/tree/main/dist)
 
-## Requirements
-
-### Python Libraries
-
-- `tkinter` (Standard Python library for GUI)
-- `psutil` (For monitoring network I/O)
-
-To install `psutil`, use:
-```bash
-pip install psutil
-```
-
-### Optional Libraries
-
-- `PyInstaller` (To convert the script into an executable file)
-
-To install `PyInstaller`, use:
-```bash
-pip install pyinstaller
-```
-
----
-
 ## Usage
 
-1. **Run the Script**:
-   Save the provided Python script (`network_overlay.py`) to your local machine. Run it using:
-   ```bash
-   python network_overlay.py
-   ```
-
-2. **Overlay Behavior**:
-   - The overlay will appear at the bottom-left corner of your screen.
-   - It will display upload and download speeds in kilobytes per second (KB/s).
-   - It will stay on top of all other windows, including the taskbar.
-
-3. **Quit the Script**:
-   - To stop the script, close the terminal running it or use the Task Manager to end the process.
+1.  **Run the Executable**: Download and run `network_overlay.exe`.
+2.  **Right-Click to Configure**: Right-click anywhere on the overlay to open the context menu. From here you can:
+    - Change the theme.
+    - Adjust the position.
+    - Customize colors, fonts, and icons.
+    - Change settings like opacity and update speed.
+3.  **Move the Overlay**: If "Position" is set to "Free Movement," simply click and drag the overlay to a new location.
+4.  **Exit the Application**: Right-click and select "Exit."
 
 ---
 
-## Building the Executable
+## Building from Source
 
-To run the application without Python, you can create an executable file:
+If you want to modify the script or build it yourself, follow these steps.
 
-1. Install `PyInstaller`:
-   ```bash
-   pip install pyinstaller
-   ```
+### Requirements
 
-2. Create the Executable:
-   ```bash
-   pyinstaller --onefile --noconsole network_overlay.py
-   ```
+-   **Python 3.x**
+-   **Required Libraries**:
+    -   `psutil`: For monitoring network I/O.
+    -   `Pillow`: For better image handling.
 
-3. Locate the Executable:
-   - The `.exe` file will be available in the `dist` folder.
-   - Run the `.exe` file to launch the overlay.
-
----
-
-## Customization
-
-- **Overlay Position**:
-  - Modify the `position_overlay()` method to change the overlay's position.
-  - Example:
-    ```python
-    x_position = 10
-    y_position = screen_height - overlay_height - 10
+    Install them using pip:
+    ```bash
+    pip install psutil pillow
     ```
 
-- **Update Interval**:
-  - Adjust the `self.update_interval` value to control how frequently network speeds are updated (default: 1 second).
+-   **Build Tool**:
+    -   `PyInstaller`: To package the script into an executable.
 
-- **Font and Size**:
-  - Customize the font, size, or color in the `tk.Label` definition:
-    ```python
-    self.label = tk.Label(self.root, font=("Arial", 14), fg="green", bg="black")
+    Install it using pip:
+    ```bash
+    pip install pyinstaller
     ```
+
+### Build Command
+
+To create a single `.exe` file that includes the necessary icons, navigate to the script's directory in your terminal and run the following command:
+
+```bash
+pyinstaller --noconsole --onefile --icon="icon.ico" --add-data "icon.png;." --add-data "icon.ico;." network_overlay.py
+```
+
+-   `--noconsole`: Hides the command prompt window when the application runs.
+-   `--onefile`: Bundles everything into a single executable file.
+-   `--icon="icon.ico"`: Sets the file icon for the `.exe`.
+-   `--add-data "source;."`: **(Crucial)** This ensures that the icon files are included in the executable, which is necessary for them to appear correctly.
+
+The final `network_overlay.exe` will be in the `dist` folder.
 
 ---
 
 ## Troubleshooting
 
-- **Overlay Disappears**:
-  - Ensure the script is running.
-  - The `keep_on_top()` method ensures the overlay stays visible; verify this functionality.
-
-- **Network Speeds Not Updating**:
-  - Ensure the `psutil` library is installed.
-  - Check your internet connection.
+-   **Icon Missing or Errors on Startup**: If you build the executable yourself, ensure you use the full `--add-data` flags in the PyInstaller command to bundle the `icon.ico` and `icon.png` files.
+-   **Cannot Run a Second Copy**: This is intentional. The application uses a lock file (`.network_overlay.lock` in your user home directory) to ensure only one instance is running.
+-   **Settings Not Saving**: The configuration is saved to `.network_overlay_config.json` in your user home directory. Ensure your system permissions allow the application to write to this file.
 
 ---
 
 ## License
 
-This project is open-source and can be used or modified freely for personal or educational purposes.
-
+This project is open-source and free to use, modify, and distribute.
